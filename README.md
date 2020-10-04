@@ -37,6 +37,8 @@ B=FORMAT:HEX,OCTETSTRING:26DC5C6CE94A4B44F330B5D9BBD77CBF958416295CF7E1CE6BCCDC1
 
 <h2>Convert ASN.1 to DER</h2>
 
+<p>OpenSSL comes with a handy ASN.1 parser you can use to convert. All we need to do now is converting the ASN.1 structure into DER format:</p>
+
 <pre>
 openssl asn1parse -genconf brainpoolP256r1.asn1 -out brainpoolP256r1.der
 </pre>
