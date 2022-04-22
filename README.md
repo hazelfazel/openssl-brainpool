@@ -1,5 +1,5 @@
 <h1>openssl-brainpool</h1>
-<p>For a long time brainpool curves were not supported by OpenSSL. To make use of brainpool curves you had to add them manually. All you have to do is calling OpenSSL with ecparam specifying your favorite elliptic curve parameters explicitly given as described in RFC3279. As an example I show how things gonna look like if you are using the brainpool curve P256r1 (a.k.a. brainpoolP256r1), given as:</p>
+<p>For a long time brainpool curves were not supported by OpenSSL. To make use of brainpool curves you had to add them manually. All you have to do is calling OpenSSL with ecparam specifying your favorite elliptic curve parameters explicitly given as described in RFC3279. As an example I show you how things gonna look like if you are using the brainpool curve P256r1 (a.k.a. brainpoolP256r1) given as:</p>
 
 <pre>
 Prime:                    0x00A9FB57DBA1EEA9BC3E660A909D838D726E3BF623D52620282013481D1F6E5377
@@ -62,7 +62,8 @@ qftX26Huqbw+ZgqQnYONcYw5eqO1Yab3kB4OgpdIVqcCAQE=
 -----END EC PARAMETERS-----
 </pre>
 
-<p>I have created a collection of well known brainpool curves you can import by OpenSSl. Today OpenSSL nativly supports brainpool curves, so there is no need to import them manually. Maybe this collection is helpful anyway. If you want to import your own curves, my collection can be a starting point.</p>
+<p>I have created a collection of well known brainpool curves you can import into OpenSSL. Today OpenSSL nativly supports brainpool curves, so there is no need to import them manually, if you turst OpenSSL ;-). If you want to import your own curves, my collection can be a starting point.</p>
+
 <p>To generate a key out of a given brainpool curve enter:</p>
 <pre>
 openssl ecparam -inform DER -in brainpoolP256r1.der -out brainpoolP256r1.key.pem -genkey
