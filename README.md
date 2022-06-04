@@ -95,11 +95,11 @@ openssl dgst -ecdsa-with-SHA1 -verify brainpoolP256r1.public.key.pem -signature 
 
 <h2 id="brainpool-native">How to use OpenSSL's native brainpool implementation</h2>
 
-<p>Newer versions of openSSL support brainpool ECC. You can list the supported curves by calling</p>
+<p>Newer versions of OpenSSL support brainpool ECC. You can list the supported curves by calling</p>
 
 <pre>openssl ecparam -list_curves</pre>
 
-<p>If your version of openSSL supports brainpoolP384r1 you can call</p>
+<p>If your version of OpenSSL supports brainpoolP384r1 you can call</p>
 
 <pre>openssl ecparam -genkey -name brainpoolP384r1 -out Example-Root-CA.key</pre>
 
