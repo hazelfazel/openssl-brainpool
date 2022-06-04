@@ -1,5 +1,7 @@
 <h1>openssl-brainpool</h1>
-<p>For a long time brainpool curves were not supported by OpenSSL. To make use of brainpool curves you had to add them manually. All you have to do is calling OpenSSL with ecparam specifying your favorite elliptic curve parameters explicitly given as described in RFC3279. As an example I show you how things gonna look like if you are using the brainpool curve P256r1 (a.k.a. brainpoolP256r1) given as:</p>
+<p>For a long time brainpool curves were not supported by OpenSSL. To make use of brainpool curves you had to add them manually. All you have to do is calling OpenSSL with ecparam specifying your favorite elliptic curve parameters explicitly given as described in RFC3279. Newer versions of OpenSSL just support brainpool curves out of the box, see below <a href="#brainpool-native">section</a> for more details.
+  
+As an example I show you how things gonna look like if you are using the brainpool curve P256r1 (a.k.a. brainpoolP256r1) and want to add this curve by its parameters given as:</p>
 
 <pre>
 Prime:                    0x00A9FB57DBA1EEA9BC3E660A909D838D726E3BF623D52620282013481D1F6E5377
@@ -27,6 +29,7 @@ primeord=INTEGER:0x00A9FB57DBA1EEA9BC3E660A909D838D718C397AA3B561A6F7901E0E82974
 cofac=INTEGER:0x01
 
 [prim]
+
 whatitis=OID:prime-field
 prime=INTEGER:0x00A9FB57DBA1EEA9BC3E660A909D838D726E3BF623D52620282013481D1F6E5377
 
@@ -89,3 +92,24 @@ openssl dgst -ecdsa-with-SHA1 -prverify brainpoolP256r1.key.pem -signature file.
 <pre>
 openssl dgst -ecdsa-with-SHA1 -verify brainpoolP256r1.public.key.pem -signature file.txt.ecdsa-with-sha1 file.txt
 </pre>
+
+<h2 id="brainpool-native">How to use OpenSSL's native brainpool implementation</h2>
+
+<p>Newer versions of openSSL support brainpool ECC. You can list the supported curves by calling</p>
+
+<pre>openssl ecparam -list_curves</pre>
+
+<p>If your version of openSSL supports brainpoolP384r1 you can call</p>
+
+<pre>openssl ecparam -genkey -name brainpoolP384r1 -out Example-Root-CA.key</pre>
+
+<p>to generate a brainpoolP384r1 key.</p>
+
+<p>E.g., to use this key in a self-signed request for a Root-CA just do</p>
+
+<pre>
+openssl req -x509 -nodes -sha256 -days 3650 -subj "/CN=Example-Root-CA-2022/O=Example ACME Ltd./C=DE" -addext "keyUsage=critical,keyCertSign:TRUE,cRLSign:TRUE" -key Example-Root-CA.key -out Example-Root-CA.pem
+openssl x509 -inform PEM -in Example-Root-CA.pem -outform DER -out Example-Root-CA.crt
+</pre>
+
+<p>That's it.</p>
