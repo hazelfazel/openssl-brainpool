@@ -1,4 +1,4 @@
-<h1>openssl-brainpool</h1>
+<h1>OpenSSL with brainpool elliptic curves</h1>
 <p>For a long time brainpool curves were not supported by OpenSSL. To make use of brainpool curves you had to add them manually. All you have to do is calling OpenSSL with ecparam specifying your favorite elliptic curve parameters explicitly given as described in RFC3279. Newer versions of OpenSSL just support brainpool curves out of the box, see below <a href="#brainpool-native">section</a> for more details.
   
 As an example I show you how things gonna look like if you are using the brainpool curve P256r1 (a.k.a. brainpoolP256r1) and want to add this curve by its parameters given as:</p>
